@@ -1,0 +1,11 @@
+/.idea/
+inImageBase/
+toImageBase/
+target/
+*.class
+*.md
+# Package Files #
+*.jar
+*.war
+*.ear
+
