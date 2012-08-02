@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 /.idea/
 inImageBase/
 toImageBase/
 target/
 *.class
 
+=======
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+>>>>>>> 257f0cc31b0aef9b623643e33e52f00a1db34c35
