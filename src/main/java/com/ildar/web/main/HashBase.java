@@ -62,7 +62,7 @@ public class HashBase {
         rootDir = rootDir.replace("\\","\\\\");   // we need double (\\) instead single (\)
         String imagePath = String.format("%s\\\\res\\\\inImageBase\\\\%s%s",
                 rootDir ,imgID, imageExt);
-        System.err.println(imagePath);
+        System.out.println(imagePath);
 
         System.out.println(imgID);
         imgID++;
@@ -125,7 +125,7 @@ public class HashBase {
             st = con.createStatement();
            // System.out.println(sql);
             st.execute(sql);
-            System.out.println("The data is loaded ^_^");
+            System.out.println("--------------The data is loaded ^_^");
         } catch (SQLException e) {
             e.printStackTrace();
             //System.err.println("This path of image is busy");
@@ -193,8 +193,10 @@ public class HashBase {
                 temp = rs.getString(2);
                 if (!(new File(temp).exists())) {
                     st.execute("DELETE FROM imagehash WHERE (id = "+ rs.getInt(1)+ ')');
+                    System.out.println(temp);
                 }
             }
+            System.out.println("are deleted from database.");
         } catch (SQLException e) {
             System.err.println("Can't get image's path from database.");
         }

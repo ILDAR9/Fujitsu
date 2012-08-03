@@ -60,12 +60,12 @@ public class ShowImage extends Component {
 
     }
 
-    public static void showImg(BufferedImage img) {
+    public static void showImg(BufferedImage img, String name) {
         if (img == null) {
             System.err.println("The path isn't correct!!!");
             return;
         }
-        JFrame frame = new JFrame("Finded ^_^");     //frame's name
+        JFrame frame = new JFrame(name);     //frame's name
         checkSize(frame, img);
 
         img = ImageWork.scale(img, width, height, img.isAlphaPremultiplied());   //trying to adjust image size
@@ -82,7 +82,9 @@ public class ShowImage extends Component {
 
     public static void showImg(File file) {
         BufferedImage img = ImageWork.loadImage(file);
-        showImg(img);
+        String name = file.toString();
+       name = name.substring(name.lastIndexOf('\\') + 1);
+        showImg(img, name);
     }
 
    /* public static void showImg() {

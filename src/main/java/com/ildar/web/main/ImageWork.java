@@ -35,7 +35,7 @@ public class ImageWork {
         if (file.exists()) {
             try {
                 img = ImageIO.read(file);
-                System.out.printf("--------------Image '%s' is loaded.\n", file.getCanonicalPath());
+                System.out.printf("Image '%s' is loaded.\n", file.getCanonicalPath());
             } catch (IOException e) {
                 System.err.printf("Can't load the image '%s'\n", file.getAbsolutePath());
             }
