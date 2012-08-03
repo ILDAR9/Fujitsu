@@ -13,10 +13,10 @@ import com.ildar.web.main.*;
  * Time: 14:00
  * To change this template use File | Settings | File Templates.
  */
-public class MainActivity {
-    private static String path;
+public class MainActivity extends AbstractMainActivity{
 
-    public static void start() {
+
+   public static void start() {
         System.out.println("\t\t\tWellcome to the IldarGlasses v1.1! ^_^");
         while (true) {
             System.out.println("add images || search '...' || reset database || show '...' || adjust database || exit");
@@ -29,16 +29,17 @@ public class MainActivity {
                     HashBase.addImagesToBase();
                     break;
                 case 1:
-                    ImageWork.startSearch(new File(path));
+                    ImageWork.startSearch(new File(path.toString()));
                     break;
                 case 2:
                     HashBase.clean();
                     break;
                 case 3:
-                    HashBase.correctBase();
+                    ShowImage.showImg(new File(path.toString()));
+
                     break;
                 case 4:
-                    ShowImage.showImg(new File(path));
+                    HashBase.correctBase();
                     break;
                 default:
                     System.out.println("====> I didn't get your idea.");
@@ -47,43 +48,6 @@ public class MainActivity {
         }
     }
 
-    private static int askAction() {
-        String request = new Scanner(System.in).nextLine();
-        Pattern pattern = Pattern.compile("\\s*[Ee]xit\\s*");
-        Matcher matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            return -1;
-        }
-        pattern = Pattern.compile("\\s*[Aa]dd\\s*[Ii]mages\\s*");
-        matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            return 0;
-        }
-        pattern = Pattern.compile("\\s*[Ss]earch\\s*['\"]*\\s*([^'^\"]+)\\s*['\"]*\\s*");
-        matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            path = matcher.group(1);
-            return 1;
-        }
-        pattern = Pattern.compile("\\s*[Rr]eset\\s*[Dd]atabase\\s*");
-        matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            return 2;
-        }
-        pattern = Pattern.compile("\\s*[Aa]djust\\s*[Dd]atabase\\s*");
-        matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            return 3;
-        }
-        pattern = Pattern.compile("\\s*[Ss]how\\s*['\"]*\\s*([^'^\"]+)\\s*['\"]*\\s*");
-        matcher = pattern.matcher(request);
-        if (matcher.matches()) {
-            path = matcher.group(1);
-            return 4;
-        }
-        return 404;
-
-    }
 
     public static void main(String[] args) {
         start();

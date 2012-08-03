@@ -1,9 +1,8 @@
 <<<<<<< HEAD
 /.idea/
-toImageBase/
-inImageBase/
+res/
 target/
-lastImgID.*
+
 *.iml
 =======
 *.class
