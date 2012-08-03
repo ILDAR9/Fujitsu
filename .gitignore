@@ -1,10 +1,10 @@
 <<<<<<< HEAD
 /.idea/
-inImageBase/
 toImageBase/
+inImageBase/
 target/
-*.class
 lastImgID.*
+*.iml
 =======
 *.class
 
