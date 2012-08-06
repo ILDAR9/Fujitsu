@@ -1,0 +1,4 @@
+GET http://www.devresource.org HTTP/1.1
+Host: www.devresource.org
+User-Agent: HTTPClient
+
