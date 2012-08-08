@@ -22,6 +22,7 @@ public class ImageWork {
     static int[] hashCode = new int[3];
     static BufferedImage img;
     static boolean isException;
+    static int maxDist = 7;
 
     public static File readPathToImg() {
         Scanner scanner = new Scanner(System.in);
@@ -209,7 +210,7 @@ public class ImageWork {
         }
         getSimpleHash(averageSum);
         List<String> ans;                         //набор ответов
-        int max = 4;                          //начнем с max = 4
+        int max = 3;                          //начнем с max = 4
         /*for (int i = 0; i < 4; i++){
        ans = com.ildar.web.main.HashBase.startSearch(max); // Возвращется обратно в этот класс для проверки дистанции Хеминга
        if (ans.size() != 1){
@@ -219,7 +220,7 @@ public class ImageWork {
         do {
             max += 2;
             ans = HashBase.startSearch(max); // Возвращется обратно в этот класс для проверки дистанции Хеминга
-        } while (!isException && max < 14 && ans.isEmpty());
+        } while (!isException && max < maxDist && ans.isEmpty());
         HashBase.end();
         if (isException) {
             System.err.println("There is a database's Exception");
@@ -251,16 +252,32 @@ public class ImageWork {
        } */
     }
 
-    /*  public static void addImagesToBase() {
-       File directory = new File("");
-       File[] imageFile = directory.listFiles();
-       com.ildar.web.main.HashBase.lastImgID();
-       for (int i = 0; i < imageFile.length; i++) {
-           imagesToSQL(imageFile[i]);
-       }
-       com.ildar.web.main.HashBase.end();
-       com.ildar.web.main.HashBase.saveImgID();
-   } */
+    public static Iterator<String> testStartSearch(File file) {
+        int averageSum = averageSum(file);
+        if (averageSum == -1) {
+            return null;
+        }
+        getSimpleHash(averageSum);
+        List<String> ans;                         //set of founded images
+        int max = 3;                          //start from max = 3 to maxDist
+        do {
+            max += 2;
+            ans = HashBase.startSearch(max); // Возвращется обратно в этот класс для проверки дистанции Хеминга
+        } while (!isException && max <= maxDist && ans.isEmpty());    //maximal constraint can be setted in maxDist
+        HashBase.end();
+        if (isException) {
+            System.err.println("There is a database's Exception");
+            return null;
+        }
+        if (ans.isEmpty()) {
+            System.out.println("--------------------There is no same image )-;");
+            return null;
+        }
+        System.out.println("max = " + max);
+
+        return ans.iterator();
+    }
+
 
     static void imagesToSQL(File file) {
         getSimpleHash(averageSum(file));
