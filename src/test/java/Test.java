@@ -46,14 +46,14 @@ public class Test {
 
     @org.junit.Test
     public void Search() {
-
+        String dirPath = new File("").getAbsolutePath();
         HashMap<String, String> tests = new HashMap<String, String>();
-        tests.put("D:\\IDEA\\IldarGlasses\\testImgs\\InDatabase.jpg", //  key-test,   value-right answer;
-                "D:\\IDEA\\IldarGlasses\\res\\inImageBase\\242.jpg");
-        tests.put("D:\\IDEA\\IldarGlasses\\testImgs\\NotInDatabase.jpg",
+        tests.put(dirPath +  "\\testImgs\\InDatabase.jpg", //  key-test,   value-right answer;
+                dirPath + "\\res\\inImageBase\\242.jpg");
+        tests.put(dirPath + "\\testImgs\\NotInDatabase.jpg",
                 null);
-        tests.put("D:\\IDEA\\IldarGlasses\\testImgs\\inDatabase2.jpg",
-                "D:\\IDEA\\IldarGlasses\\res\\inImageBase\\17.jpg");
+        tests.put(dirPath + "\\testImgs\\inDatabase2.jpg",
+                "\\res\\inImageBase\\17.jpg");
         boolean check = true;
         for (Map.Entry<String, String> test : tests.entrySet()) {
             Iterator<String> iter = ImageWork.testStartSearch(
